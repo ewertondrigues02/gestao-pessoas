@@ -1,5 +1,6 @@
 package br.com.ewerton.gestaopessoa.service;
 
+import br.com.ewerton.gestaopessoa.exceptions.CpfDuplicadoException;
 import br.com.ewerton.gestaopessoa.exceptions.DatabaseException;
 import br.com.ewerton.gestaopessoa.exceptions.ResourceNotFoundException;
 import br.com.ewerton.gestaopessoa.model.PessoaModel;
@@ -13,7 +14,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import static org.yaml.snakeyaml.tokens.Token.ID.Key;
 
 @Service
 public class PessoaService {
@@ -26,6 +26,9 @@ public class PessoaService {
     }
 
     public PessoaModel inserirPessoa(PessoaModel pessoa){
+        if (pessoaRepository.findByCpf(pessoa.getCpf()).isPresent()) {
+            throw new CpfDuplicadoException("CPF já cadastrado: " + pessoa.getCpf());
+        }
         return pessoaRepository.save(pessoa);
     }
 

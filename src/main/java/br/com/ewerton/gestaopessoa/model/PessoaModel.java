@@ -3,6 +3,7 @@ package br.com.ewerton.gestaopessoa.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,6 +12,7 @@ import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.Objects;
 
 @Setter
@@ -37,13 +39,13 @@ public class PessoaModel {
 
     @NotBlank
     @Email
-    @Column(name = "email")
+    @Column(name = "email", nullable = false, unique = true)
     private String email;
 
-    @NotBlank
+    @NotNull
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     @Column(name = "data_nascimento")
-    private LocalDate dataNascimento;
+    private Date dataNascimento;
 
     @Override
     public boolean equals(Object o) {
