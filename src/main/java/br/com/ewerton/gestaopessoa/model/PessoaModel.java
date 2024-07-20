@@ -19,7 +19,7 @@ import java.util.Objects;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "tb_pessoa")
-public class Pessoa {
+public class PessoaModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -49,7 +49,7 @@ public class Pessoa {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Pessoa pessoa = (Pessoa) o;
+        PessoaModel pessoa = (PessoaModel) o;
         return Objects.equals(getId(), pessoa.getId()) && Objects.equals(getNome(), pessoa.getNome()) && Objects.equals(getCpf(), pessoa.getCpf()) && Objects.equals(getEmail(), pessoa.getEmail()) && Objects.equals(getDataNascimento(), pessoa.getDataNascimento());
     }
 
@@ -58,3 +58,4 @@ public class Pessoa {
         return Objects.hash(getId(), getNome(), getCpf(), getEmail(), getDataNascimento());
     }
 }
+
