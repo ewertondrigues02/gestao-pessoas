@@ -28,7 +28,7 @@ public class PessoaController {
     private PessoaService pessoaService;
 
     @Operation(summary = "Lista todas as pessoas cadastradas no banco de dados")
-    @GetMapping
+    @GetMapping("listar")
     public ResponseEntity<List<PessoaDTO>> listarTodasPessoas() {
         List<PessoaModel> list = pessoaService.ListarPessoas();
         List<PessoaDTO> listDTO = list.stream().map(x -> new PessoaDTO(x)).collect(Collectors.toList());
@@ -36,7 +36,7 @@ public class PessoaController {
     }
 
     @Operation(summary = "Inseri novas pessoas e verifica se o cpf é válido")
-    @PostMapping
+    @PostMapping("inserir")
     public ResponseEntity<PessoaDTO> inserir(@RequestBody PessoaDTO pessoaDTO) {
         try {
             String cpfFormatado = CPFUtils.validarEFormatarCPF(pessoaDTO.getCpf());
@@ -52,7 +52,7 @@ public class PessoaController {
     }
 
     @Operation(summary = "Encontra pessoas po id e verifica se a pessoa esta cadastrada")
-    @GetMapping("/{id}")
+    @GetMapping("busca/{id}")
     public ResponseEntity<PessoaModel> buscarPessoaPorId(@PathVariable Long id) {
         try {
             PessoaModel pessoaModel = pessoaService.localizarPessoa(id);
@@ -66,7 +66,7 @@ public class PessoaController {
     }
 
     @Operation(summary = "Deleta a pessoa por id")
-    @DeleteMapping("/{id}")
+    @DeleteMapping("delete/{id}")
     public ResponseEntity<Void> excluirPessoa(@PathVariable Long id) {
         PessoaModel pessoaModel = pessoaService.excluirPessoa(id);
         if (pessoaModel == null) {
@@ -76,7 +76,7 @@ public class PessoaController {
     }
 
     @Operation(summary = "Atualiza os dados da pessoa e verifica se o cpf é valido")
-    @PutMapping("/{id}")
+    @PutMapping("alterar/{id}")
     public ResponseEntity<PessoaDTO> alterar(@PathVariable Long id, @RequestBody PessoaDTO pessoaDTO) {
         try {
             String cpfFormatado = CPFUtils.validarEFormatarCPF(pessoaDTO.getCpf());
@@ -94,7 +94,7 @@ public class PessoaController {
     }
 
     @Operation(summary = "Atualiza os dados da pessoa parcialmente")
-    @PatchMapping("/{id}")
+    @PatchMapping("/alterar-parcial/{id}")
     public ResponseEntity<PessoaModel> atualizarParcialmente(@PathVariable Long id, @RequestBody Map<String, Object> atualizacao) {
         try {
             PessoaModel pessoaAtualizadaModel = pessoaService.atualizarParcialmentePessoa(id, atualizacao);
