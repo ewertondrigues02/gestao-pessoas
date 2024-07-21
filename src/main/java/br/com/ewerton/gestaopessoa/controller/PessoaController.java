@@ -88,13 +88,19 @@ public class PessoaController {
     @PatchMapping("/{id}")
     public ResponseEntity<PessoaModel> atualizarParcialmente(@PathVariable Long id, @RequestBody Map<String, Object> atualizacao) {
         try {
-            PessoaModel pessoaAtualizadaDTO = pessoaService.atualizarParcialmentePessoa(id, atualizacao);
-            if (pessoaAtualizadaDTO == null) {
+            PessoaModel pessoaAtualizadaModel = pessoaService.atualizarParcialmentePessoa(id, atualizacao);
+            if (pessoaAtualizadaModel == null) {
                 return ResponseEntity.notFound().build();
             }
-            return ResponseEntity.ok().body(pessoaAtualizadaDTO);
+            return ResponseEntity.ok().body(pessoaAtualizadaModel);
         } catch (Exception ex) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
+    }
+
+    @GetMapping("/contar")
+    public ResponseEntity<Long> quantidadePessoa() {
+       Long qtdPessoa = pessoaService.contarPessoa();
+        return ResponseEntity.ok().body(qtdPessoa);
     }
 }

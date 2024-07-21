@@ -75,8 +75,12 @@ public class PessoaService {
         return null;
     }
 
-    public PessoaModel atualizarParcialmentePessoa(Long id, Map<String, Object> atualizacao){
-        PessoaModel pessoa = pessoaRepository.getReferenceById(id);
+    public PessoaModel atualizarParcialmentePessoa(Long id, Map<String, Object> atualizacao) {
+        Optional<PessoaModel> pessoaOpt = pessoaRepository.findById(id);
+        if (!pessoaOpt.isPresent()) {
+            return null;
+        }
+        PessoaModel pessoa = pessoaOpt.get();
         atualizacao.forEach((key, value) -> {
             Field field = ReflectionUtils.findField(PessoaModel.class, key);
             if (field != null) {
@@ -84,6 +88,7 @@ public class PessoaService {
                 ReflectionUtils.setField(field, pessoa, value);
             }
         });
+
         return pessoaRepository.save(pessoa);
     }
 
