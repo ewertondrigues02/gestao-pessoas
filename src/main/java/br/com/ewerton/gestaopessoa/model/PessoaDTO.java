@@ -1,6 +1,7 @@
 package br.com.ewerton.gestaopessoa.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -9,13 +10,16 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Date;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class PessoaDTO {
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler" })
+public class PessoaDTO implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     private Long id;
 

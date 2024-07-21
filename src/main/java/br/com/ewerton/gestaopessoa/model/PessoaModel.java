@@ -1,5 +1,6 @@
 package br.com.ewerton.gestaopessoa.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -11,6 +12,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.Objects;
@@ -21,7 +23,9 @@ import java.util.Objects;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "tb_pessoa")
-public class PessoaModel {
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler" })
+public class PessoaModel implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

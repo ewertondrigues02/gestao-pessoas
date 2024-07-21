@@ -3,6 +3,7 @@ package br.com.ewerton.gestaopessoa.service;
 import br.com.ewerton.gestaopessoa.exceptions.CpfDuplicadoException;
 import br.com.ewerton.gestaopessoa.exceptions.DatabaseException;
 import br.com.ewerton.gestaopessoa.exceptions.ResourceNotFoundException;
+import br.com.ewerton.gestaopessoa.model.PessoaDTO;
 import br.com.ewerton.gestaopessoa.model.PessoaModel;
 import br.com.ewerton.gestaopessoa.model.PessoaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,27 +38,41 @@ public class PessoaService {
         return obj.orElseThrow(() -> new ResourceNotFoundException(id));
     }
 
-    public PessoaModel alterarPessoa(Long id, PessoaModel pessoa){
+    public PessoaDTO alterarPessoa(Long id, PessoaDTO pessoaDTO) {
         try {
-            PessoaModel entity = pessoaRepository.getReferenceById(id);
-            updateData(entity, pessoa);
-            return pessoaRepository.save(entity);
+            PessoaModel entity = pessoaRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Pessoa com ID " + id + " não encontrada."));
+            updateData(entity, pessoaDTO);
+            PessoaModel pessoaSalva = pessoaRepository.save(entity);
+            return toDTO(pessoaSalva);
         } catch (RuntimeException e) {
             e.printStackTrace();
             throw new DatabaseException(e.getMessage());
         }
     }
 
-    private void updateData(PessoaModel entity, PessoaModel obj) {
-        entity.setNome(obj.getNome());
-        entity.setEmail(obj.getEmail());
-        entity.setCpf(obj.getCpf());
-        entity.setDataNascimento(obj.getDataNascimento());
-
+    private void updateData(PessoaModel entity, PessoaDTO dto) {
+        entity.setNome(dto.getNome());
+        entity.setEmail(dto.getEmail());
+        entity.setCpf(dto.getCpf());
+        entity.setDataNascimento(dto.getDataNascimento());
     }
 
-    public void excluirPessoa(Long id){
-        pessoaRepository.deleteById(id);
+    private PessoaDTO toDTO(PessoaModel model) {
+        PessoaDTO dto = new PessoaDTO();
+        dto.setNome(model.getNome());
+        dto.setEmail(model.getEmail());
+        dto.setCpf(model.getCpf());
+        dto.setDataNascimento(model.getDataNascimento());
+        return dto;
+    }
+
+    public PessoaModel excluirPessoa(Long id) {
+        PessoaModel pessoa =  pessoaRepository.findById(id).orElse(null);
+        if (pessoa != null) {
+            pessoaRepository.deleteById(id);
+            return pessoa;
+        }
+        return null;
     }
 
     public PessoaModel atualizarParcialmentePessoa(Long id, Map<String, Object> atualizacao){
