@@ -6,6 +6,8 @@ import br.com.ewerton.gestaopessoa.model.CPFUtils;
 import br.com.ewerton.gestaopessoa.model.PessoaDTO;
 import br.com.ewerton.gestaopessoa.model.PessoaModel;
 import br.com.ewerton.gestaopessoa.service.PessoaService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +19,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+@Tag(name = "Gestão de Pessoas endpoint")
 @RestController
 @RequestMapping("/pessoas")
 public class PessoaController {
@@ -24,6 +27,7 @@ public class PessoaController {
     @Autowired
     private PessoaService pessoaService;
 
+    @Operation(summary = "Lista todas as pessoas cadastradas no banco de dados")
     @GetMapping
     public ResponseEntity<List<PessoaDTO>> listarTodasPessoas() {
         List<PessoaModel> list = pessoaService.ListarPessoas();
@@ -31,6 +35,7 @@ public class PessoaController {
         return ResponseEntity.ok().body(listDTO);
     }
 
+    @Operation(summary = "Inseri novas pessoas e verifica se o cpf é válido")
     @PostMapping
     public ResponseEntity<PessoaDTO> inserir(@RequestBody PessoaDTO pessoaDTO) {
         try {
@@ -46,6 +51,7 @@ public class PessoaController {
         }
     }
 
+    @Operation(summary = "Encontra pessoas po id e verifica se a pessoa esta cadastrada")
     @GetMapping("/{id}")
     public ResponseEntity<PessoaModel> buscarPessoaPorId(@PathVariable Long id) {
         try {
@@ -59,6 +65,7 @@ public class PessoaController {
         }
     }
 
+    @Operation(summary = "Deleta a pessoa por id")
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> excluirPessoa(@PathVariable Long id) {
         PessoaModel pessoaModel = pessoaService.excluirPessoa(id);
@@ -68,6 +75,7 @@ public class PessoaController {
         return ResponseEntity.noContent().build();
     }
 
+    @Operation(summary = "Atualiza os dados da pessoa e verifica se o cpf é valido")
     @PutMapping("/{id}")
     public ResponseEntity<PessoaDTO> alterar(@PathVariable Long id, @RequestBody PessoaDTO pessoaDTO) {
         try {
@@ -85,6 +93,7 @@ public class PessoaController {
         }
     }
 
+    @Operation(summary = "Atualiza os dados da pessoa parcialmente")
     @PatchMapping("/{id}")
     public ResponseEntity<PessoaModel> atualizarParcialmente(@PathVariable Long id, @RequestBody Map<String, Object> atualizacao) {
         try {
@@ -98,6 +107,7 @@ public class PessoaController {
         }
     }
 
+    @Operation(summary = "Conta quantas pessoas estão cadastradas")
     @GetMapping("/contar")
     public ResponseEntity<Long> quantidadePessoa() {
        Long qtdPessoa = pessoaService.contarPessoa();
