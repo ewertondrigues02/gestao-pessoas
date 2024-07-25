@@ -21,5 +21,5 @@ A aplicação "Gestão de Pessoas" é um sistema CRUD para gerenciar informaçõ
  * Configuração do Backend
  * Banco de Dados
 ### Crie o banco de dados no MySQL: 
- ´´´CREATE DATABASE gestao_pessoas;´´´
+ ```CREATE DATABASE gestao_pessoas;```
 
