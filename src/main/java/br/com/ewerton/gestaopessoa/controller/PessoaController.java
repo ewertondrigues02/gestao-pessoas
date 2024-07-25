@@ -19,16 +19,17 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+@CrossOrigin(origins = "http://localhost:8081")
 @Tag(name = "Gestão de Pessoas endpoint")
 @RestController
-@RequestMapping("/pessoas")
+@RequestMapping("/api/pessoas")
 public class PessoaController {
 
     @Autowired
     private PessoaService pessoaService;
 
     @Operation(summary = "Lista todas as pessoas cadastradas no banco de dados")
-    @GetMapping("listar")
+    @GetMapping()
     public ResponseEntity<List<PessoaDTO>> listarTodasPessoas() {
         List<PessoaModel> list = pessoaService.ListarPessoas();
         List<PessoaDTO> listDTO = list.stream().map(x -> new PessoaDTO(x)).collect(Collectors.toList());
@@ -36,7 +37,7 @@ public class PessoaController {
     }
 
     @Operation(summary = "Inseri novas pessoas e verifica se o cpf é válido")
-    @PostMapping("inserir")
+    @PostMapping()
     public ResponseEntity<PessoaDTO> inserir(@RequestBody PessoaDTO pessoaDTO) {
         try {
             String cpfFormatado = CPFUtils.validarEFormatarCPF(pessoaDTO.getCpf());
@@ -52,7 +53,7 @@ public class PessoaController {
     }
 
     @Operation(summary = "Encontra pessoas po id e verifica se a pessoa esta cadastrada")
-    @GetMapping("busca/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<PessoaModel> buscarPessoaPorId(@PathVariable Long id) {
         try {
             PessoaModel pessoaModel = pessoaService.localizarPessoa(id);
@@ -66,7 +67,7 @@ public class PessoaController {
     }
 
     @Operation(summary = "Deleta a pessoa por id")
-    @DeleteMapping("delete/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> excluirPessoa(@PathVariable Long id) {
         PessoaModel pessoaModel = pessoaService.excluirPessoa(id);
         if (pessoaModel == null) {
@@ -76,7 +77,7 @@ public class PessoaController {
     }
 
     @Operation(summary = "Atualiza os dados da pessoa e verifica se o cpf é valido")
-    @PutMapping("alterar/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<PessoaDTO> alterar(@PathVariable Long id, @RequestBody PessoaDTO pessoaDTO) {
         try {
             String cpfFormatado = CPFUtils.validarEFormatarCPF(pessoaDTO.getCpf());
@@ -94,7 +95,7 @@ public class PessoaController {
     }
 
     @Operation(summary = "Atualiza os dados da pessoa parcialmente")
-    @PatchMapping("/alterar-parcial/{id}")
+    @PatchMapping("/{id}")
     public ResponseEntity<PessoaModel> atualizarParcialmente(@PathVariable Long id, @RequestBody Map<String, Object> atualizacao) {
         try {
             PessoaModel pessoaAtualizadaModel = pessoaService.atualizarParcialmentePessoa(id, atualizacao);
@@ -110,7 +111,7 @@ public class PessoaController {
     @Operation(summary = "Conta quantas pessoas estão cadastradas")
     @GetMapping("/contar")
     public ResponseEntity<Long> quantidadePessoa() {
-       Long qtdPessoa = pessoaService.contarPessoa();
+        Long qtdPessoa = pessoaService.contarPessoa();
         return ResponseEntity.ok().body(qtdPessoa);
     }
 }

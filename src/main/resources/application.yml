@@ -1,12 +1,12 @@
 server:
-  port: 8080
+  port: 8081
 spring:
   application:
     name: gestao-pessoa
   datasource:
-    url: jdbc:mysql://localhost:3306/gestao_pessoas
+    url: jdbc:mysql://localhost:3306/gestao_pessoas?allowPublicKeyRetrieval=true&useSSL=false
     username: ewerton
-    password: ewerton19
+    password: ew1234
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
