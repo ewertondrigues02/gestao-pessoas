@@ -28,7 +28,7 @@ Antes de começar, você precisará de:
 Crie o banco de dados no MySQL:
 
 ```sql
-CREATE DATABASE gestao_pessoas;
+CREATE DATABASE gestao_pessoas;```
 
 ## Crie a tabela tb_pessoa:
 
@@ -40,7 +40,7 @@ CREATE TABLE tb_pessoa (
     email varchar(255) NOT NULL,
     data_nascimento DATE NOT NULL,
     PRIMARY KEY (id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;```
 
 ## Configure o arquivo `application.yml` do Spring Boot:
 
@@ -68,21 +68,21 @@ springdoc:
   api-docs:
     path: /v3/api-docs
   swagger-ui:
-    path: /swagger-ui.html
+    path: /swagger-ui.html```
 
 ## Rodando o Backend
 
 Instale as dependências:
 
 ```bash
-./mvnw install
+./mvnw install```
 
 ## Iniciar a aplicação Spring Boot
 
 Para iniciar a aplicação Spring Boot, execute o seguinte comando:
 
 ```bash
-./mvnw spring-boot:run
+./mvnw spring-boot:run```
 
 
 Configuração do Frontend
@@ -92,27 +92,25 @@ Instale o Node.js: Siga as instruções em Node.js.
 Instale o Vue CLI:
 
 ```bash
-npm install -g @vue/cli
+npm install -g @vue/cli```
 
 ### Configuração e Execução do Frontend
 
 Clone o repositório do frontend:
 
 ```bash
-git clone https://github.com/seuusuario/seurepositorio-frontend.git
+git clone https://github.com/seuusuario/seurepositorio-frontend.git```
 
 Instale as dependências:
 
-````bash
-Copiar código
+```bash
 cd seurepositorio-frontend
-npm install
+npm install```
 
 Inicie o servidor de desenvolvimento:
 
 ```bash
-Copiar código
-npm run serve
+npm run serve```
 
 
 
