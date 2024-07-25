@@ -20,4 +20,6 @@ A aplicação "Gestão de Pessoas" é um sistema CRUD para gerenciar informaçõ
  * Docker (opcional): Para executar MySQL em um container Docker
  * Configuração do Backend
  * Banco de Dados
-### Crie o banco de dados no MySQL:
+### Crie o banco de dados no MySQL: 
+ ´´´CREATE DATABASE gestao_pessoas;
+
