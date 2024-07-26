@@ -237,6 +237,63 @@ Isso executará o linter para garantir que o código esteja em conformidade com 
 
 - A configuração `browserslist` garante suporte para navegadores modernos e evita navegadores desatualizados.
 
+### Dependências do Maven
+
+- **spring-boot-starter-actuator**
+  - **Grupo:** org.springframework.boot
+  - **ArtifactId:** spring-boot-starter-actuator
+
+- **springdoc-openapi-starter-webmvc-ui**
+  - **Grupo:** org.springdoc
+  - **ArtifactId:** springdoc-openapi-starter-webmvc-ui
+  - **Versão:** 2.0.4
+
+- **spring-boot-starter-data-jpa**
+  - **Grupo:** org.springframework.boot
+  - **ArtifactId:** spring-boot-starter-data-jpa
+
+- **spring-boot-starter-validation**
+  - **Grupo:** org.springframework.boot
+  - **ArtifactId:** spring-boot-starter-validation
+
+- **spring-boot-starter-web**
+  - **Grupo:** org.springframework.boot
+  - **ArtifactId:** spring-boot-starter-web
+
+- **flyway-core**
+  - **Grupo:** org.flywaydb
+  - **ArtifactId:** flyway-core
+
+- **flyway-mysql**
+  - **Grupo:** org.flywaydb
+  - **ArtifactId:** flyway-mysql
+
+- **spring-boot-starter-thymeleaf**
+  - **Grupo:** org.springframework.boot
+  - **ArtifactId:** spring-boot-starter-thymeleaf
+
+- **spring-boot-devtools**
+  - **Grupo:** org.springframework.boot
+  - **ArtifactId:** spring-boot-devtools
+  - **Escopo:** runtime
+  - **Opcional:** true
+
+- **mysql-connector-j**
+  - **Grupo:** com.mysql
+  - **ArtifactId:** mysql-connector-j
+  - **Escopo:** runtime
+
+- **lombok**
+  - **Grupo:** org.projectlombok
+  - **ArtifactId:** lombok
+  - **Opcional:** true
+
+- **spring-boot-starter-test**
+  - **Grupo:** org.springframework.boot
+  - **ArtifactId:** spring-boot-starter-test
+  - **Escopo:** test
+
+
 
 
 
