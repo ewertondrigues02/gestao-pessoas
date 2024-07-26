@@ -183,3 +183,28 @@ Este projeto está licenciado sob a Licença XYZ. Consulte o arquivo [LICENSE](L
 - [Documentação do Vue.js](https://vuejs.org/)
 - [Documentação do MySQL](https://dev.mysql.com/doc/)
 - [Documentação do Flyway](https://flywaydb.org/documentation/)
+
+ # Rodar a Aplicação Frontend com Vue.js 3
+
+Para rodar a aplicação frontend usando Vue.js 3, siga estas etapas:
+
+## 1. Instalar Dependências
+
+Primeiro, certifique-se de que você tem o Node.js e o npm (ou yarn) instalados. No diretório raiz do projeto, execute o seguinte comando para instalar todas as dependências do projeto:
+
+```bash
+npm install```
+
+Isso iniciará a aplicação e você poderá acessá-la em [http://localhost:8080](http://localhost:8080) (ou a porta especificada na configuração).
+
+## Construir a Aplicação para Produção
+
+Quando você estiver pronto para implantar a aplicação, execute o comando para criar a versão otimizada para produção:
+
+```bash
+npm run build```
+
+
+
+
+
