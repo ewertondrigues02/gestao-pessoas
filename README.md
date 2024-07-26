@@ -193,7 +193,8 @@ Para rodar a aplicação frontend usando Vue.js 3, siga estas etapas:
 Primeiro, certifique-se de que você tem o Node.js e o npm (ou yarn) instalados. No diretório raiz do projeto, execute o seguinte comando para instalar todas as dependências do projeto:
 
 ```bash
-npm install```
+npm install
+```
 
 Isso iniciará a aplicação e você poderá acessá-la em [http://localhost:8080](http://localhost:8080) (ou a porta especificada na configuração).
 
@@ -202,7 +203,40 @@ Isso iniciará a aplicação e você poderá acessá-la em [http://localhost:808
 Quando você estiver pronto para implantar a aplicação, execute o comando para criar a versão otimizada para produção:
 
 ```bash
-npm run build```
+npm run build
+```
+
+Os arquivos de construção serão gerados na pasta dist, prontos para serem implantados em um servidor.
+
+Verificar o Código e Aplicar Correções
+Para verificar o código e aplicar correções de estilo, execute:
+
+```bash
+npm run lint
+```
+Isso executará o linter para garantir que o código esteja em conformidade com as regras especificadas.
+
+## Configurações Adicionais
+
+### Dependências
+
+- **axios**: Para fazer requisições HTTP.
+- **core-js**: Biblioteca para suportar novas funcionalidades JavaScript.
+- **vue**: Framework principal.
+- **vue-router**: Para gerenciamento de rotas.
+
+### DevDependencies
+
+- Ferramentas de desenvolvimento e configuração como Babel e ESLint.
+
+### Configuração do ESLint
+
+- O ESLint está configurado para verificar o código em conformidade com as regras recomendadas e específicas para Vue 3.
+
+### Compatibilidade de Navegadores
+
+- A configuração `browserslist` garante suporte para navegadores modernos e evita navegadores desatualizados.
+
 
 
 
